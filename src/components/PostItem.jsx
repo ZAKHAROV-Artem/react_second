@@ -1,7 +1,6 @@
 import MyButton from "./UI/button/MyButton";
 
 const PostItem = ({ number, remove, post }) => {
-  console.log(post);
   return (
     <div className="post_item">
       <div className="post_text">
