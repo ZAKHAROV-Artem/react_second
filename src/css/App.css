@@ -59,15 +59,14 @@
   color: gray;
 }
 .sorting_fieldset {
+  display: flex;
+  align-items: center;
   padding: 20px 20px 25px 20px;
 }
 .sorting_fieldset legend {
   padding: 0 7px;
+  margin: 0;
 }
-.my_select {
-  width: 150px;
-  height: 50px;
-  outline: none;
-  padding: 10px 15px;
+.sorting_fieldset > * {
   margin-left: 20px;
 }

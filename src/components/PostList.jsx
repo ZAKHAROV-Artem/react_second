@@ -11,6 +11,10 @@ const PostList = ({ posts, title = "List of posts", remove }) => {
     );
   });
 
+  if (!posts.length) {
+    return <h2 className="no_posts_text">No posts, sorry</h2>;
+  }
+
   return (
     <>
       <h3 className="post_list_title">{title}</h3>
