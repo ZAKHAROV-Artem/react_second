@@ -1,5 +1,5 @@
-import SortSelect from "./UI/Sorting/select/SortSelect";
-import SortInput from "./UI/Sorting/input/SortInput";
+import SortSelect from "../UI/Sorting/select/SortSelect";
+import SortInput from "../UI/Sorting/input/SortInput";
 
 const PostFilter = ({ filter, setFilter }) => {
   return (
@@ -11,7 +11,7 @@ const PostFilter = ({ filter, setFilter }) => {
         default_value="Sort by"
         options={[
           { value: "title", name: "Sort by title" },
-          { value: "content", name: "Sort by content" },
+          { value: "body", name: "Sort by content" },
         ]}
       />
       <SortInput

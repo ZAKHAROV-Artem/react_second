@@ -1,18 +1,18 @@
-import MyButton from "./UI/button/MyButton";
-import MyInput from "./UI/input/MyInput";
+import MyButton from "../UI/button/MyButton";
+import MyInput from "../UI/input/MyInput";
 import { useState } from "react";
 
-const PostForm = ({ create }) => {
-  const [post, setPost] = useState({ title: "", content: "" });
+const PostForm = ({ posts_length, create }) => {
+  const [post, setPost] = useState({ title: "", body: "" });
 
   const addPost = (e) => {
     e.preventDefault();
     const new_post = {
       ...post,
-      id: Date.now(),
+      id: posts_length + 1,
     };
     create(new_post);
-    setPost({ title: "", content: "" });
+    setPost({ title: "", body: "" });
   };
 
   return (
@@ -26,8 +26,8 @@ const PostForm = ({ create }) => {
       <MyInput
         type="text"
         placeholder="Content"
-        value={post.content}
-        onChange={(e) => setPost({ ...post, content: e.target.value })}
+        value={post.body}
+        onChange={(e) => setPost({ ...post, body: e.target.value })}
       />
       <MyButton onClick={addPost}>Add post</MyButton>
     </form>

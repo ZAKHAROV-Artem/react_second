@@ -1,6 +1,8 @@
+import st from "./MyButton.module.css";
+
 const MyButton = ({ children, ...props }) => {
   return (
-    <button className="btn_black" {...props}>
+    <button className={st.btn_black} {...props}>
       {children}
     </button>
   );
