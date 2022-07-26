@@ -1,14 +1,21 @@
-import { Routes, Route } from "react-router-dom";
-import About from "../pages/About";
-import Posts from "../pages/Posts";
-import PostDetailItem from "../pages/PostDetailItem";
+import { Route, Routes } from "react-router-dom";
+
+import { routes } from "../router/router";
 
 const AppRouter = () => {
+  console.log(routes);
   return (
     <Routes>
-      <Route exact path="posts" element={<Posts />} />
-      <Route path="about" element={<About />} />
-      <Route exact path="posts/:id" element={<PostDetailItem />} />
+      {routes.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            element={route.component}
+            path={route.path}
+            exact={route.exact}
+          />
+        );
+      })}
     </Routes>
   );
 };

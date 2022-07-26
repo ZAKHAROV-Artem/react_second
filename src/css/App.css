@@ -100,3 +100,107 @@
   color: black;
   border: 1px solid;
 }
+.post_detail_wrapper {
+  max-width: 1020px;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+.post_detail_wrapper h1 {
+  font-size: 26px;
+  max-width: 80%;
+}
+.post_detail {
+  padding: 20px 30px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  background: rgb(56, 56, 56);
+  background: linear-gradient(
+    90deg,
+    rgba(50, 50, 50, 0.69) 0%,
+    rgba(0, 0, 0, 0.727328431372549) 15%,
+    rgba(56, 56, 56, 0.88531162464986) 90%,
+    rgba(56, 56, 56, 0.79) 100%
+  );
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.post_detail_title {
+  margin-top: 10px;
+}
+.post_detail_body {
+  margin-top: 10px;
+}
+
+/* Post comments */
+
+.post-comments {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+.post-comments h2 {
+  color: black;
+  margin: 10px;
+}
+.post-comments .comments {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  padding: 20px 10px;
+  border-radius: 5px;
+  background-color: gray;
+}
+.comments .comment_item {
+  max-width: 80%;
+  width: fit-content;
+  min-height: 50px;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(56, 56, 56, 0.88531162464986);
+}
+.comment_item .item_name {
+  font-weight: 700;
+}
+.comment_item .item_body {
+  margin-left: 13px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.post-comments .add-post-comment {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  grid-column-gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: gray;
+}
+.post-comments .add-post-comment textarea {
+  border: none;
+  outline: none;
+  resize: vertical;
+  min-height: 40px;
+  height: 52px;
+  max-height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  overflow-wrap: break-word;
+  border-radius: 5px;
+}
+.post-comments .add-post-comment button {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
