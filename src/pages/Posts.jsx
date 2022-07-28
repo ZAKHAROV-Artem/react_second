@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PostService from "../API/PostService";
 import PostFilter from "../components/PostFilter";
 import PostForm from "../components/PostForm";
@@ -26,14 +26,14 @@ function Posts() {
 
   const [fetchPosts, is_posts_loading, error] = useFetching(async () => {
     const response = await PostService.getAll(limit, page_number);
-    setPosts(response.data);
+    setPosts([...posts, ...response.data]);
     const total_count = response.headers["x-total-count"];
     setTotalPages(getPagesCount(total_count, limit));
   });
-  console.log(total_pages);
+
   useEffect(() => {
     fetchPosts();
-  }, [page_number]);
+  }, [page_number, limit]);
 
   const changePageNumber = (number) => {
     setPageNumber(number);
@@ -49,6 +49,21 @@ function Posts() {
 
   const sorted_and_searched_posts = usePosts(posts, filter.sort, filter.query);
 
+  const observing_element = useRef();
+  const observer = useRef();
+
+  useEffect(() => {
+    if (is_posts_loading) return;
+    if (observer.current) observer.current.disconnect();
+    const callback = (entries) => {
+      if (entries[0].isIntersecting && page_number < total_pages) {
+        setPageNumber(page_number + 1);
+      }
+    };
+    observer.current = new IntersectionObserver(callback);
+    observer.current.observe(observing_element.current);
+  }, [is_posts_loading]);
+
   return (
     <div className="App">
       <MyButton
@@ -62,23 +77,28 @@ function Posts() {
       </MyModal>
 
       <hr style={{ margin: "15px 20px" }} />
-      <PostFilter filter={filter} setFilter={setFilter} />
-      {error ? (
+      <PostFilter
+        filter={filter}
+        setFilter={setFilter}
+        limit={limit}
+        setLimit={setLimit}
+      />
+      {error && (
         <h2 className="no_posts_text">Something have gone wrong {error}</h2>
-      ) : is_posts_loading ? (
-        <Loader></Loader>
-      ) : (
-        <PostList
-          remove={removePost}
-          posts={sorted_and_searched_posts}
-          title="JS post list"
-        />
       )}
-      <Pagination
+      <PostList
+        remove={removePost}
+        posts={sorted_and_searched_posts}
+        title="JS post list"
+      />
+      <div ref={observing_element} style={{ height: "30px" }}></div>
+      {is_posts_loading && <Loader></Loader>}
+
+      {/* <Pagination
         total_pages={total_pages}
         changePageNumber={changePageNumber}
         page_number={page_number}
-      />
+      /> */}
     </div>
   );
 }

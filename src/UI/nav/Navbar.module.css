@@ -3,6 +3,9 @@
   top: 0;
   left: 0;
 
+  display: flex;
+  justify-content: space-between;
+
   width: 100%;
   padding: 20px;
   background: rgb(56, 56, 56);
@@ -15,7 +18,7 @@
 }
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 60px);
+  grid-template-columns: repeat(2, auto);
   grid-template-rows: 1fr;
   grid-gap: 20px;
   list-style: none;
@@ -30,7 +33,7 @@
   letter-spacing: 3px;
   color: white;
 }
-.item:after {
+.item_link:after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -44,7 +47,11 @@
   border-bottom: 1px solid white;
   transition: 0.2s;
 }
-.item:hover:after {
+.item_link:hover:after {
+  opacity: 1;
+  bottom: -5px;
+}
+.item_link_active:after {
   opacity: 1;
   bottom: -5px;
 }
